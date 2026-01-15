@@ -1,4 +1,4 @@
-Python Parallelism Banhmarks
+Python Parallelism Benchmark
 
 ### CPU-bound benchmark results
 
