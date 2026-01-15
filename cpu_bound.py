@@ -1,17 +1,4 @@
 #!/usr/bin/env python3
-"""
-bench_concurrency.py
-
-Benchmarks: threads vs processes vs asyncio coroutines on:
-  1) CPU-bound pure Python workload (GIL-sensitive)
-  2) I/O-bound workload via local TCP echo server (epoll/selector + sockets)
-
-Notes:
-- CPU benchmark uses "work units" (simple arithmetic loop) to avoid external deps.
-- I/O benchmark uses local loopback TCP server to create real kernel I/O waits.
-
-Tested on Linux; should work elsewhere but results differ.
-"""
 
 from __future__ import annotations
 
