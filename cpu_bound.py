@@ -55,10 +55,6 @@ def print_table(title: str, results: List[Result]) -> None:
     print()
 
 
-# ----------------------------
-# CPU-bound workload
-# ----------------------------
-
 def cpu_work(units: int) -> int:
     acc = 0
     for i in range(units):
@@ -68,7 +64,6 @@ def cpu_work(units: int) -> int:
 def cpu_bench_threads(tasks: int, units: int, workers: int) -> None:
     with ThreadPoolExecutor(max_workers=workers) as ex:
         futs = [ex.submit(cpu_work, units) for _ in range(tasks)]
-        # Collect results to ensure work happens
         _ = sum(f.result() for f in futs)
 
 def cpu_bench_processes(tasks: int, units: int, workers: int) -> None:
@@ -88,7 +83,6 @@ async def cpu_bench_asyncio(tasks: int, units: int, concurrency: int) -> None:
 
 
 def run_repeated(label: str, repeats: int, fn: Callable[[], None], warmup: int = 1) -> Result:
-    # Warmup
     for _ in range(warmup):
         fn()
 
