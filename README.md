@@ -234,7 +234,6 @@ These benchmarks are:
 - Localhost
 - Synthetic
 
-They are not intended to represent real-world production workloads.
 
 
 
