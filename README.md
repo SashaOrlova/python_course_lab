@@ -42,6 +42,10 @@ Each language implements the **same logical workloads**.
 - Python 3.10+
 - Linux or macOS
 
+**Launch**
+
+`python3 cpu_bound.py --tasks 2000 --concurrency 200 --repeats 5`
+`python3 io_bound.py --tasks 2000 --concurrency 200 --repeats 5`
 
 ### Go
 
@@ -49,28 +53,31 @@ Each language implements the **same logical workloads**.
 - Go 1.20+
 - Linux or macOS
 
+**Launch**
+
+`go run bench.go --tasks 2000 --concurrency 200 --repeats 5`
 
 Compared models:
 - `threads` — OS threads (via `sync.WaitGroup`)
 - `processes` — `os/exec`
 - `goroutines`
 
-**Important clarification**
-
-Goroutines are **not threads**.  
-They are **user-space scheduled coroutines**, multiplexed onto a smaller number of OS
-threads by the Go runtime scheduler.
 
 ### C++
+
+**Requirements**
 - С++20
 - macOS
+
+**Launch**
+
+`g++ -O2 -std=gnu++20 bench.cpp -o bench`
+`./bench --tasks 2000 --concurrency 200 --repeats 5 --warmup 1 --cpu-units 200000 --payload-size 256`
 
 Compared models:
 - `threads` — `std::thread`
 - `processes` — `fork`
 - `coroutines`
-  - CPU-bound: cooperative coroutines on a single thread
-  - I/O-bound: C++20 coroutines + kqueue / epoll
 
 
 ## Implementation Notes
@@ -157,4 +164,5 @@ These benchmarks are:
 - Designed for teaching and architectural analysis
 
 They are not intended to represent real-world production workloads.
+
 
