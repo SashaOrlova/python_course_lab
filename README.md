@@ -231,11 +231,11 @@ The benchmark results align with the standard guidance for Python I/O concurrenc
 ## Disclaimer
 
 These benchmarks are:
-- Localhost-only
+- Localhost
 - Synthetic
-- Designed for teaching and architectural analysis
 
 They are not intended to represent real-world production workloads.
+
 
 
 
