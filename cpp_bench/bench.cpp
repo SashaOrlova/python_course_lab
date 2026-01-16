@@ -1,11 +1,3 @@
-// bench_macos.cpp
-// macOS-only: uses kqueue for coroutine-based I/O (asyncio analogue).
-// C++20 benchmark: threads vs processes vs coroutines with Markdown output.
-//
-// Benchmarks:
-//   CPU-bound: threads vs processes vs coroutines (cooperative; mirrors "asyncio is bad for CPU-bound")
-//   I/O-bound: threads vs processes vs coroutines (kqueue + nonblocking sockets)
-
 #include <algorithm>
 #include <atomic>
 #include <chrono>
