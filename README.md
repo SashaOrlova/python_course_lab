@@ -173,3 +173,91 @@
 | threads    | 0.006 s | 0.006 s | 0.006 s | 10   |
 | processes  | 0.114 s | 0.113 s | 0.140 s | 10   |
 | goroutines | 0.011 s | 0.011 s | 0.012 s | 10   |
+
+## С++ Parallelism Benchmark
+
+### CPU-bound benchmark results
+
+#### Config: tasks=2000, concurrency=2, repeats=5
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.152 s | 0.152 s | 0.153 s | 5 |
+| processes | 0.180 s | 0.178 s | 0.194 s | 5 |
+| coroutines | 0.296 s | 0.296 s | 0.305 s | 5 |
+
+#### Config: tasks=2000, concurrency=8, repeats=5
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.045 s | 0.045 s | 0.055 s | 5 |
+| processes | 0.128 s | 0.127 s | 0.131 s | 5 |
+| coroutines | 0.296 s | 0.296 s | 0.298 s | 5 |
+
+#### Config: tasks=2000, concurrency=12, repeats=5
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.033 s | 0.033 s | 0.034 s | 5 |
+| processes | 0.130 s | 0.126 s | 0.139 s | 5 |
+| coroutines | 0.296 s | 0.296 s | 0.318 s | 5 |
+
+#### Config: tasks=2000, concurrency=20, repeats=5
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.033 s | 0.033 s | 0.034 s | 5 |
+| processes | 0.123 s | 0.121 s | 0.139 s | 5 |
+| coroutines | 0.296 s | 0.296 s | 0.298 s | 5 |
+
+#### Config: tasks=2000, concurrency=30, repeats=5
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.033 s | 0.033 s | 0.033 s | 5 |
+| processes | 0.133 s | 0.128 s | 0.145 s | 5 |
+| coroutines | 0.297 s | 0.296 s | 0.303 s | 5 |
+
+
+### I/O-bound benchmark (local TCP echo; kernel I/O wait)
+
+#### Config: tasks=200, concurrency=2, repeats=10
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.009 s | 0.008 s | 0.012 s | 5 |
+| processes | 0.029 s | 0.028 s | 0.030 s | 5 |
+| coroutines | 0.012 s | 0.011 s | 0.012 s | 5 |
+
+#### Config: tasks=200, concurrency=8, repeats=10
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.010 s | 0.009 s | 0.015 s | 5 |
+| processes | 0.025 s | 0.025 s | 0.028 s | 5 |
+| coroutines | 0.011 s | 0.011 s | 0.012 s | 5 |
+
+#### Config: tasks=200, concurrency=12, repeats=10
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.012 s | 0.011 s | 0.017 s | 5 |
+| processes | 0.025 s | 0.024 s | 0.026 s | 5 |
+| coroutines | 0.013 s | 0.013 s | 0.024 s | 5 |
+
+#### Config: tasks=200, concurrency=20, repeats=10
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.012 s | 0.010 s | 0.014 s | 5 |
+| processes | 0.024 s | 0.024 s | 0.024 s | 5 |
+| coroutines | 0.013 s | 0.013 s | 0.023 s | 5 |
+
+#### Config: tasks=200, concurrency=30, repeats=10
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.011 s | 0.011 s | 0.014 s | 5 |
+| processes | 0.027 s | 0.026 s | 0.027 s | 5 |
+| coroutines | 0.017 s | 0.013 s | 0.025 s | 5 |
+
