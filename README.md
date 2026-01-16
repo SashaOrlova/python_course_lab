@@ -139,6 +139,78 @@ I/O scalability is dominated by **how efficiently the program waits**, not by ra
 
 ---
 
+## Reference Works (Baseline)
+
+- TestDriven.io — *Parallelism, Concurrency, and AsyncIO in Python* https://testdriven.io/blog/python-concurrency-parallelism/
+  Explains why:
+  - threads and asyncio do not scale for CPU-bound work due to the GIL
+  - multiprocessing is required for true parallelism
+
+- StackOverflow canonical discussions on  
+  *multiprocessing vs multithreading vs asyncio*  https://stackoverflow.com/questions/27435284/multiprocessing-vs-multithreading-vs-asyncio
+  Emphasize:
+  - CPU-bound → processes
+  - I/O-bound → asynci
+ 
+## Summary of Observed Results
+
+### CPU-bound benchmark (pure Python loop)
+
+Observed behavior:
+
+- **Threads:** slow
+- **Asyncio:** slow
+- **Processes:** significantly faster
+
+Threads and asyncio show **nearly identical execution times**, while multiprocessing scales
+much better with available CPU cores.
+
+### I/O-bound benchmark (network I/O)
+
+Observed behavior:
+
+- **Asyncio:** fastest or tied for fastest
+- **Threads:** close to asyncio for moderate concurrency
+- **Processes:** consistently slower
+
+---
+
+## Comparison With Established Expectations
+
+### CPU-bound Workloads
+
+**Expected (from theory and prior work):**
+- Python threads cannot execute bytecode in parallel due to the **GIL**
+- Asyncio runs on a single thread and therefore cannot provide parallelism
+- Multiprocessing bypasses the GIL by using separate interpreters in separate processes
+
+**Observed:**
+- Threads ≈ asyncio (both effectively single-core)
+- Processes scale and complete significantly faster
+
+**Conclusion:**  
+The benchmark results exactly match the expected behavior.
+
+---
+
+### I/O-bound Workloads
+
+**Expected (from theory and prior work):**
+- I/O-bound tasks spend most time waiting
+- Asyncio minimizes context switching by suspending coroutines in user space
+- Threads can perform well for moderate I/O concurrency but incur higher scheduling overhead
+- Processes add unnecessary overhead for I/O waiting
+
+**Observed:**
+- Asyncio consistently performs best or ties with threads
+- Threads are competitive but slightly less efficient at scale
+- Processes are slower due to process creation and IPC overhead
+
+**Conclusion:**  
+The benchmark results align with the standard guidance for Python I/O concurrency.
+
+---
+
 ## What to Use and When
 
 ### Python
@@ -164,5 +236,6 @@ These benchmarks are:
 - Designed for teaching and architectural analysis
 
 They are not intended to represent real-world production workloads.
+
 
 
