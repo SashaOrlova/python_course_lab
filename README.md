@@ -1,4 +1,4 @@
-Python Parallelism Benchmark
+## Python Parallelism Benchmark
 
 ### CPU-bound benchmark results
 
@@ -87,3 +87,89 @@ Python Parallelism Benchmark
 | threads    | 0.022 s | 0.019 s | 0.029 s | 10   |
 | processes  | 0.299 s | 0.268 s | 0.330 s | 10   |
 | asyncio    | 0.021 s | 0.020 s | 0.022 s | 10   |
+
+## Go Parallelism Benchmark
+
+### CPU-bound benchmark results
+
+#### Config: tasks=2000, concurrency=2, repeats=5
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.203 s | 0.203 s | 0.208 s | 5    |
+| processes  | 1.768 s | 1.730 s | 1.782 s | 5    |
+| goroutines | 0.223 s | 0.221 s | 0.224 s | 5    |
+
+#### Config: tasks=2000, concurrency=8, repeats=5
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.060 s | 0.060 s | 0.060 s | 5    |
+| processes  | 0.862 s | 0.826 s | 0.932 s | 5    |
+| goroutines | 0.062 s | 0.061 s | 0.063 s | 5    |
+
+#### Config: tasks=2000, concurrency=12, repeats=5
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.045 s | 0.045 s | 0.047 s | 5    |
+| processes  | 0.884 s | 0.875 s | 0.912 s | 5    |
+| goroutines | 0.044 s | 0.044 s | 0.044 s | 5    |
+
+#### Config: tasks=2000, concurrency=20, repeats=5
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.045 s | 0.045 s | 0.046 s | 5    |
+| processes  | 0.929 s | 0.915 s | 0.967 s | 5    |
+| goroutines | 0.044 s | 0.044 s | 0.046 s | 5    |
+
+#### Config: tasks=2000, concurrency=30, repeats=5
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.046 s | 0.045 s | 0.048 s | 5    |
+| processes  | 0.941 s | 0.935 s | 0.945 s | 5    |
+| goroutines | 0.045 s | 0.044 s | 0.047 s | 5    |
+
+### I/O-bound benchmark (local TCP echo; kernel I/O wait)
+
+#### Config: tasks=200, concurrency=2, repeats=10
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.011 s | 0.011 s | 0.014 s | 10   |
+| processes  | 0.201 s | 0.191 s | 0.243 s | 10   |
+| goroutines | 0.016 s | 0.013 s | 0.023 s | 10   |
+
+#### Config: tasks=200, concurrency=8, repeats=10
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.006 s | 0.006 s | 0.006 s | 10   |
+| processes  | 0.109 s | 0.102 s | 0.136 s | 10   |
+| goroutines | 0.012 s | 0.011 s | 0.012 s | 10   |
+
+#### Config: tasks=200, concurrency=12, repeats=10
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.006 s | 0.006 s | 0.007 s | 10   |
+| processes  | 0.104 s | 0.100 s | 0.152 s | 10   |
+| goroutines | 0.012 s | 0.011 s | 0.012 s | 10   |
+
+#### Config: tasks=200, concurrency=20, repeats=10
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.006 s | 0.006 s | 0.011 s | 10   |
+| processes  | 0.117 s | 0.107 s | 0.154 s | 10   |
+| goroutines | 0.012 s | 0.011 s | 0.028 s | 10   |
+
+#### Config: tasks=200, concurrency=30, repeats=10
+
+| Model      | Median  | Min     | Max     | Runs |
+|------------|---------|---------|---------|------|
+| threads    | 0.006 s | 0.006 s | 0.006 s | 10   |
+| processes  | 0.114 s | 0.113 s | 0.140 s | 10   |
+| goroutines | 0.011 s | 0.011 s | 0.012 s | 10   |
