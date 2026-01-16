@@ -261,3 +261,10 @@
 | processes | 0.027 s | 0.026 s | 0.027 s | 5 |
 | coroutines | 0.017 s | 0.013 s | 0.025 s | 5 |
 
+#### Config: tasks=2000, concurrency=200, repeats=10
+
+| Model | Median | Min | Max | Runs |
+|------:|-------:|----:|----:|-----:|
+| threads | 0.164 s | 0.135 s | 0.174 s | 5 |
+| processes | 0.694 s | 0.371 s | 1.166 s | 5 |
+| coroutines | 0.064 s | 0.063 s | 0.071 s | 5 |
